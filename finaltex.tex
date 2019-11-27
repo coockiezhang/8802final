@@ -1,0 +1,267 @@
+\documentclass[12pt]{article}
+
+\usepackage{geometry}
+ \geometry{
+ letterpaper,
+ left=1in,
+ right=1in,
+ bottom=1in,
+ top=1.25in
+ }               % See geometry.pdf to learn the layout options. There are lots.
+%\geometry{landscape}          
+\usepackage[round]{natbib}      
+\usepackage{graphicx}
+\usepackage{lipsum}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage[format=hang,labelfont=bf]{caption}
+\usepackage{float}
+\usepackage[parfill]{parskip}
+\usepackage{tensor}
+\usepackage{natbib}
+\usepackage[inline]{enumitem}
+%\begin{enumerate*}%[label=\textit{\alph*)}] 
+%\item
+%\end{enumerate*} 
+\usepackage{color}
+
+% Appendices - nice table/figure numbering with appendix identifier
+\usepackage[titletoc,toc,title]{appendix}
+%% Restart table/figure numbering in appendices using <\counterwithin{figure}{section}>
+%\usepackage{chngcntr}
+
+\usepackage[parfill]{parskip}
+
+\usepackage{url}
+%\usepackage{hyperref}
+\usepackage{authblk}
+\renewcommand\Affilfont{\footnotesize}
+\usepackage{easymat}
+\usepackage{bigstrut}
+\usepackage{threeparttable} 
+\usepackage[format=hang,labelfont=bf]{caption}
+\usepackage{rotating}
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{mdframed}
+\usepackage[raggedright]{titlesec}
+\usepackage{longtable}
+
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\usepackage{scrextend}
+\deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}}
+
+\usepackage[table, dvipsnames]{xcolor}
+\definecolor{lightgray}{gray}{0.95}
+\definecolor{white}{rgb}{1.0, 1.0, 1.0}
+
+% for making changes in response to reviews
+% must come *after* xcolor
+% toggle the following two lines to reveal or hide the changes
+%\usepackage[commentmarkup=footnote]{changes}
+\usepackage[final]{changes}
+\definechangesauthor[name={Reviewer 1}, color=blue]{r1}
+\definechangesauthor[name={Reviewer 2}, color=blue]{r2}
+\definechangesauthor[name={Reviewer 3}, color=blue]{r3}
+\definechangesauthor[name={Reviewer 4}, color=OliveGreen]{r4}
+\definechangesauthor[name={Reviewer 5}, color=OliveGreen]{r5}
+\definechangesauthor[name={Editors}, color=Violet]{editors}
+\definechangesauthor[name={Notes}, color=brown]{note}
+
+\DeclareMathOperator{\Tr}{Tr}
+
+\newcommand{\mbf}{\mathbf}
+
+\newcommand{\qf}{\tensor*[_5]{\mbox{q}}{_0}}
+\newcommand{\qoz}{\tensor*[_1]{\mbox{q}}{_0}}
+\newcommand{\qoo}{\tensor*[_1]{\mbox{q}}{_1}}
+\newcommand{\qfo}{\tensor*[_4]{\mbox{q}}{_1}}
+\newcommand{\qof}{\tensor*[_1]{\mbox{q}}{_4}}
+\newcommand{\qff}{\tensor*[_{45}]{\mbox{q}}{_{15}}}
+\newcommand{\qox}{\tensor*[_{1}]{\mbox{q}}{_{x}}}
+\newcommand{\qoa}{\tensor*[_{1}]{\mbox{q}}{_{a}}}
+\newcommand{\qfx}{\tensor*[_{5}]{\mbox{q}}{_{x}}}
+\newcommand{\qnx}{\tensor*[_{n}]{\mbox{q}}{_{x}}}
+\newcommand{\qts}{\tensor*[_{20}]{\mbox{q}}{_{60}}}
+\newcommand{\qfxhat}{\tensor*[_{5}]{\widehat{\mbox{q}}}{_{x}}}
+
+\newcommand{\ez}{{\mbox{e}}{_0}}
+\newcommand{\ezhat}{{\widehat{\mbox{e}}}{_0}}
+\newcommand{\ex}{{\mbox{e}}{_x}}
+\newcommand{\exhat}{{\widehat{\mbox{e}}}{_x}}
+
+\newcommand{\mfx}{\tensor*[_{5}]{\mbox{m}}{_{x}}}
+\newcommand{\mfz}{\tensor*[_{5}]{\mbox{m}}{_{0}}}
+
+\newcommand{\anx}{\tensor*[_{n}]{\mbox{a}}{_{x}}}
+\newcommand{\aoz}{\tensor*[_{1}]{\mbox{a}}{_{0}}}
+\newcommand{\alast}{\tensor*[_{+}]{\mbox{a}}{_{110}}}
+
+\newcommand{\lx}{\tensor*[_{}]{\mbox{l}}{_{x}}}
+
+\newcommand{\logit}{\mbox{logit}}
+\newcommand{\expit}{\mbox{expit}}
+
+% Insert labels and numbers into complex align environment equations, e.g. matrices of equations
+\makeatletter
+\newcommand\Label[1]{&\refstepcounter{equation}(\theequation)\ltx@label{#1}&}
+\makeatother
+
+%double space
+\usepackage{setspace}
+%\linespread{1.5}
+
+%touch-up footnote formatting
+\usepackage{scrextend}
+\deffootnote[1em]{1em}{1em}{\textsuperscript{\thefootnotemark}}
+
+%% Fonts
+% sans-serif
+\renewcommand{\familydefault}{\sfdefault}
+% Helvetica
+\usepackage{helvet}
+% mathmode fonts sans-serif too
+\usepackage[italic]{mathastext}
+% 'isomath' sets upper case greek letters italic in accordance with 
+% the International Standard ISO 80000-2
+\usepackage{isomath}
+
+\sloppy
+
+% remove extra spaces after using \input{}
+\newcommand{\lineinput}[1]{%
+  \begingroup\endlinechar=-1 \input{#1}\endgroup
+}
+
+% reference the appendices in separate file
+%\usepackage{xr}
+%\externaldocument{"SVD-Comp-Appendices"}
+
+% define variable for number of life tables per sex
+\DeclareRobustCommand{\LTtot}{\input{../tables/LTtot.txt}}
+
+% define variable for number of life tables for both sexes
+\DeclareRobustCommand{\LTtotBoth}{\input{../tables/LTtotBoth.txt}}
+
+% define variable for date when HMD downloaded
+\DeclareRobustCommand{\HMDdate}{ \begingroup\endlinechar=-1 \input{../tables/HMDdate.txt}\endgroup}
+
+
+
+
+\title{\vfill Reproducible Research Project: SOC 8802 Final}
+
+\author{Chenyao Zhang}
+
+\affil[1]{Department of Sociology, The Ohio State University}
+
+%\date{\today \vfill}
+\date{Nov 2019\vfill}
+
+\begin{document}
+
+\pagenumbering{roman} 
+\maketitle
+
+%\thispagestyle{empty}
+
+%\newpage
+%\listofchanges
+
+%\newpage
+%\tableofcontents
+%\newpage
+%\listoftables
+%\newpage
+%\listoffigures
+
+\clearpage 
+\pagenumbering{arabic} 
+\newpage
+
+
+%%% === %%% === %%%
+\section{Introduction}
+
+Since the first International Conference on Population and Development (ICPD) in 1994, the main diagnostic indicators of reproductive success in low- and middle-income countries have been based on individuals? fertility preferences -- that is, the desire for no more births and the desire to delay next birth. Information on the desire for more children plays an essential role in determining key indicators including (a) unmet need for family planning (`unmet need' for short) and (b) the percentage of demand satisfied. That is, trends in fertility preferences is a direct indicator of whether progress is being made toward achieving reproductive health goals.
+Demographers conventionally assume that pre-transitional fertility regimes are a result of strong pronatalism -- a belief that bestows great value on reproduction and children. Fertility decline in Asia and Latin America has been attributed to economic development. Increasing levels of education and urbanization increase the opportunity cost of childbearing, thus decreasing the desire for having children (\cite{easterlin}, \cite{bc}). Dispute remains about the relative weight of these and other factors in determining these declines since 1950. Even more in dispute is the character of fertility decline in Sub-Saharan Africa (eg.  \cite{bc}). Why is the total fertility rate (TFR) in Sub-Saharan Africa persistently high? Are the nature and causes of fertility decline in this major region fundamentally different (i.e. `African exceptionalism')?  To provide new insight into this question, I examine the country and regional differences in their desire to avoid pregnancy at particular stages of fertility transition (i.e., the fertility from high to low levels). In particular, I expect the experience of Sub-Saharan Africa to differ from the other major regions due mainly to the fact of relatively high desired fertility in pre-transition reproductive regimes in Sub-Saharan Africa. 
+Although trends of commonly cited and influential indicators such as `unmet need' and percentage demand satisfied depend on trends in fertility preferences, the existing literature lacks recent rigorous examination of these trends. My primary objective in this paper, then, is to construct a comprehensive yet parsimonious description of trends in fertility preferences as fertility rates decline from high to low. A secondary objective is to ascertain whether there is regional variation in this particular facet of fertility decline (i.e. trend in desire to avoid pregnancy).
+
+This final project provides several preliminary descriptive analyses.
+
+\section{Data}
+I use national demographic surveys from many sources, including the Demographic and Health Surveys (DHS), Multiple Indicator Cluster Surveys (MICS), Reproductive Health Surveys (RHS), World Fertility Surveys (WFS), Pan Arab project for family health (PAPFAM), Pan Arab Project for Child Development (PAPCHILD), and other national representative data sources from countries in developing regions. These national representative surveys are national probability samples of women of reproductive age (15-50), the sample sizes of each survey normally range from 5000 to 30000 households depending on the population of the country. While DHS surveys predominate (about three-quarters of the surveys), the inclusion of DHS and PAP surveys makes this analysis more regionally balanced than many recent analyses that rely on DHS alone. Regions are coded into five major regions to avoid small cell problems: East \& Southern Africa, Middle \& West Africa, Latin America, West Asia \& North Africa, and other Asian sub-regions. The earliest surveys were conducted in 1975 and the latest in 2018.
+In selecting countries and surveys for the analysis, I exclude: 1) countries with less than 2 surveys to adequately capture the trend; 2) surveys after low fertility has been attained; 3) Small countries -- a country needs to achieve a population of at least 500,000 in the year 2000; 4) Surveys with under 2000 women; and 5) surveys in which measurement of fertility preferences is transparently defective (e.g. Bangladesh 1975, Nigeria 1999, etc.). In sum, the complete pulled dataset consists of 350 surveys in 78 countries. 
+
+\section{Descreptives}
+
+For this final project, I extracted a 5\% sample from the pulled dataset. The extract sample file could be found on my Github site. Table 1 shows the number of countries and number of women in the sample by region. Sub-Saharan Africa has the most countries and women in my sub-sample, which makes sense because my focus in on the SSA region.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrr}
+  \hline
+ Region & N Country & N women \\ 
+  \hline
+ central asia & 3 & 1250 \\ 
+ latin america & 17 & 13021 \\ 
+ south asia & 5 & 18981\\ 
+ se asia & 7 & 9853 \\ 
+ ss africa & 35 & 22667\\ 
+ wana & 11 & 5873\\ 
+   \hline
+\end{tabular}
+\caption{Number of countries and women in the sample by region} 
+\label{tab:table1}
+\end{table}
+
+Table 2 shows the percentage of women desire to stop childbearing by region. 
+Overall, about one-half of the women want to `stop' (55.3\%). Considerable across-region variation is evident -- markedly lower fractions in the Sub-Saharan African regions as compared to Latin America and Asia. 
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrr}
+  \hline
+ Region & \% stop \\ 
+  \hline
+ central asia & 0.54 \\ 
+ latin america & 0.66 \\ 
+ south asia & 0.70 \\ 
+ se asia & 0.58 \\ 
+ ss africa & 0.31 \\ 
+ wana & 0.56 \\ 
+   \hline
+\end{tabular}
+\caption{Percent stop by region} 
+\label{tab:table2}
+\end{table}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=5in]{plot.pdf}
+\caption{TFR density plot of the surveys in the sample.}
+\label{fig:parabola1}
+\end{center}
+\end{figure}
+
+Because my primary objective in the actual paper is to construct a comprehensive yet parsimonious description of trends in fertility preferences as fertility rates decline from high to low, it is necessary to have a sense of the stage of TFR in my sample in general. Figure 1 shows the TFR density of all surveys included in my sub-sample. Most of the surveys in my sub-sample is either post-transition or mid-transition. 
+
+
+%%% === %%% === %%%
+
+
+\addcontentsline{toc}{section}{References}
+\bibliography{final.bib}
+\bibliographystyle{chicago}
+
+\end{document}  
+
