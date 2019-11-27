@@ -1,0 +1,111 @@
+title: "final"
+author: "Chen"
+date: "11/12/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE}
+# install required packages that may not be installed now
+list.of.packages <- c(
+  "knitr",
+  "bookdown",
+  "formatR",
+  "devtools",
+  "reshape2",
+  "ggplot2",
+  "plyr",
+  "stargazer",
+  "xtable",
+  "readr",
+  "stringr",
+  "httr"
+)
+# identify required packages that are not already installed
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+# install required packages that are not already installed
+if(length(new.packages)) install.packages(new.packages,type="binary")
+
+# load a few packages necessary to set up the Markdown file
+library(knitr)
+library(bookdown)
+library(formatR)
+
+# set Markdown file options
+# knitr::opts_knit$set(root.dir = normalizePath(".."))
+opts_chunk$set(fig.align='center', fig.show='hold')
+opts_chunk$set(warning=FALSE, message=FALSE, error=FALSE) 
+opts_chunk$set(tidy=TRUE)
+opts_chunk$set(cache=TRUE)
+opts_chunk$set(eval=TRUE)
+opts_chunk$set(fig.width=6.5, fig.height=6.5)
+options(formatR.arrow=TRUE, width=55)
+```
+
+## Load necessary packages
+```{r packages-for-analysis, echo=FALSE, eval=TRUE}
+library(readr)
+library(stringr)
+library(reshape2)
+library(ggplot2)
+library(plyr)
+library(httr)
+library(stargazer)
+library(xtable)
+library(devtools)
+library(rethinking)
+library(haven)
+library(survey)
+library(xtable)
+# optional, this installs a version of stargazer that formats things in 'booktabs' style
+install_github("markwestcott34/stargazer-booktabs")
+```
+## Load data
+
+This study uses surveys from many sources, including the Demographic and Health Surveys (DHS), Multiple Indicator Cluster Surveys (MICS), Reproductive Health Surveys (RHS), World Fertility Surveys (WFS), Pan Arab project for family health (PAPFAM), Pan Arab Project for Child Development (PAPCHILD), and other national representative data sources from countries in developing regions. These national representative surveys are national probability samples of women of reproductive age (15-50), the sample sizes of each survey normally range from 5000 to 30000 households depending on the population of the country. While DHS surveys predominate (about three-quarters of the surveys), the inclusion of DHS and PAP surveys makes this analysis more regionally balanced than many recent analyses that rely on DHS alone. Regions are coded into five major regions to avoid small cell problems: East & Southern Africa, Middle & West Africa, Latin America, West Asia & North Africa, and other Asian sub-regions. The earliest surveys were conducted in 1975 and the latest in 2018.
+In selecting countries and surveys for the analysis, I exclude: 1) countries with less than 2 surveys to adequately capture the trend; 2) surveys after low fertility (TFR < 2.2) has been attained; 3) Small countries – a country needs to achieve a population of at least 500,000 in the year 2000; 4) Surveys with under 2000 women; and 5) surveys in which measurement of fertility preferences is transparently defective (e.g. Bangladesh 1975, Nigeria 1999, etc.). In sum, the complete pulled dataset consists of 350 surveys in 78 countries. Here, I extracted a 5% sample from the pulled dataset. The extract sample file could be found on my Github site. 
+
+```{r data}
+data <- read_dta("Datafinal5.dta")
+head(data)
+summary(data)
+```
+
+## Descriptive Tables
+
+The following tables show descriptives of:
+1) Number of countries in the sample by region
+2) Number of women in the sample by region
+3) Percent stop by region.
+
+```{r desc table, echo=FALSE}
+tab1 <- aggregate(cc ~ region, data, function(x) length(unique(x)))
+table1 <- xtable(tab1,caption="Number of countries in the sample by region",digits=1,label="tab:table1")
+capture.output(table,file="table1.txt")
+tab2 <- aggregate(wt ~ region, data, function(x) length(unique(x)))
+table2 <- xtable(tab2,caption="Number of women in the sample by region",digits=1,label="tab:table2")
+capture.output(table,file="table2.txt")
+d.w <- svydesign(ids=~1, data=data, weights=~wt)
+tab3 <- svyby(formula = ~stop, by = ~region, design = d.w, FUN = svymean)
+table3 <- xtable(tab3,caption="Percent stop by region",digits=1,label="tab:table3")
+capture.output(table,file="table3.txt")
+```
+
+
+## Desceiptive Figure
+I also plot a TFR density plot to have a better sense of my data
+
+```{r desc plot, echo=FALSE}
+pdf(file="plot.pdf")
+plot(density(data$tfr[!is.na(data$tfr)]),
+     main="TFR density plot",     ## Title
+     xlab="TFR", ## label x-axis
+     ylab="density")             ## label x-axis
+abline(v=mean(data$tfr[!is.na(data$tfr)])) ## add vertical line
+dev.off()
+```
+
+
